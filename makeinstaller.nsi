@@ -26,14 +26,16 @@ Section "AmongUsCompanion"
 
 ; Files to be installed (change name for new version)
   File "amongusdiscord_2.3.4_windows_32bit.exe"
-  ; File "AmongUsCapture.exe"
+  File "AmongUsCapture.exe"
   File "shhh.ico"
 
 SectionEnd
 
+
 Var EDIT
 Var CHECKBOX
 Var OPTIONALEDIT
+
 
 Function nsDialogsPage
     nsDialogs::Create 1018
@@ -59,6 +61,7 @@ Function nsDialogsPage
     nsDialogs::Show
 FunctionEnd
 
+
 Function OnChange
     Pop $0
 
@@ -67,6 +70,7 @@ Function OnChange
     FileWrite $4 "DISCORD_BOT_TOKEN = $0"
     FileClose $4
 FunctionEnd
+
 
 Function OnCheckbox
     Pop $0 # HWND
@@ -77,6 +81,7 @@ Function OnCheckbox
     nsDialogs::OnChange $OPTIONALEDIT $0
 FunctionEnd
 
+
 Function OnChangeOptional
     Pop $0
 
@@ -85,6 +90,7 @@ Function OnChangeOptional
     FileWrite $4 "DISCORD_BOT_TOKEN = $0"
     FileClose $4
 FunctionEnd
+
 
 Section "Desktop Shortcut" SectionX
     SetShellVarContext current
