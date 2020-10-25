@@ -104,5 +104,5 @@ FunctionEnd
 
 Section "Desktop Shortcut" SectionX
     SetShellVarContext current
-    CreateShortCut "$DESKTOP\AutoMuteUs.lnk" "$INSTDIR\amongusdiscord_2.3.4_windows_32bit.exe" "" "$INSTDIR\shhh.ico"
+    CreateShortCut "$DESKTOP\AutoMuteUs.lnk" "$INSTDIR\amongusdiscord_windows.exe" "" "$INSTDIR\shhh.ico"
 SectionEnd
