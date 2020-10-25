@@ -35,6 +35,7 @@ SectionEnd
 Var EDIT
 Var CHECKBOX
 Var OPTIONALEDIT
+Var BUTTON
 
 
 Function nsDialogsPage
@@ -50,7 +51,12 @@ Function nsDialogsPage
     GetFunctionAddress $0 OnChange
     nsDialogs::OnChange $EDIT $0
 
-    ${NSD_CreateCheckbox} 0 -50 100% 8u Test
+    ${NSD_CreateButton} 0 -70 100% 12u OpenFolder
+    Pop $BUTTON
+    GetFunctionAddress $0 OnClick
+    nsDialogs::OnClick $BUTTON $0
+
+    ${NSD_CreateCheckbox} 0 -50 100% 8u 2ndBotToken(optional)
     Pop $CHECKBOX
     GetFunctionAddress $0 OnCheckbox
     nsDialogs::OnClick $CHECKBOX $0
@@ -71,6 +77,10 @@ Function OnChange
     FileClose $4
 FunctionEnd
 
+Function OnClick
+    Pop $0 # HWND
+        ExecShell "open" "$INSTDIR"
+FunctionEnd
 
 Function OnCheckbox
     Pop $0 # HWND
