@@ -25,7 +25,7 @@ Section "AmongUsCompanion"
   SetOutPath $INSTDIR
 
 ; Files to be installed (change name for new version)
-  File "amongusdiscord_2.3.4_windows_32bit.exe"
+  File "amongusdiscord_windows.exe"
   File "AmongUsCapture.exe"
   File "shhh.ico"
 
