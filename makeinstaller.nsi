@@ -54,7 +54,7 @@ Function nsDialogsPage
     GetFunctionAddress $0 OnChange
     nsDialogs::OnChange $EDIT $0
 
-    ${NSD_CreateButton} 0 -75 100% 12u "Open Folder"
+    ${NSD_CreateButton} 0 -75 100% 12u "Open Capture"
     Pop $BUTTON
     GetFunctionAddress $0 OnClick
     nsDialogs::OnClick $BUTTON $0
@@ -64,7 +64,7 @@ Function nsDialogsPage
     GetFunctionAddress $0 OnCheckbox
     nsDialogs::OnClick $CHECKBOX $0
 
-    ${NSD_CreateLabel} 0 40u 75% 40u "1. Paste Bot Token above$\n2. Open the Installation Folder with $\"Open Folder$\" and start$\n   $\"AmongUsCapture.exe$\" once for the Bot to recognise it$\n3. Close the Installer"
+    ${NSD_CreateLabel} 0 40u 75% 40u "1. Paste Bot Token above.$\n2. To let the Bot know where the Capture is stored it has to be run once. Press $\"Open Capture$\" to start it and close it after it has finished loading."
     Pop $0
 
     nsDialogs::Show
@@ -83,7 +83,7 @@ FunctionEnd
 Function OnClick
     Pop $0
 
-        ExecShell "open" "$INSTDIR"
+        ExecShell "open" "$INSTDIR\AmongUsCapture.exe"
     GetDlgItem $0 $HWNDPARENT 1 # Enable Close Button
     EnableWindow $0 1
 FunctionEnd
@@ -101,9 +101,11 @@ FunctionEnd
 Function OnChangeOptional
     Pop $0
 
+    FileOpen $4 "$INSTDIR\final.txt" w
+    System::Call user32::GetWindowText(p$EDIT,t.r0,i${NSIS_MAX_STRLEN})
+    FileWrite $4 "DISCORD_BOT_TOKEN = $0$\n"
     System::Call user32::GetWindowText(p$OPTIONALEDIT,t.r0,i${NSIS_MAX_STRLEN})
-    FileOpen $4 "$INSTDIR\final2.txt" w
-    FileWrite $4 "DISCORD_BOT_TOKEN = $0"
+    FileWrite $4 "DISCORD_BOT_TOKEN_2 = $0"
     FileClose $4
 FunctionEnd
 
